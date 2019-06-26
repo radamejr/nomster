@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :photos
   
+  mount_uploader :profile_pic, AvatarUploader
+
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup
     login = conditions.delete(:login)

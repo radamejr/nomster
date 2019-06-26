@@ -103,7 +103,7 @@
         <b><%= comment.humanized_rating %></b> -
         <% end %>
         <%= comment.message %> -
-        <small><%= comment.user.username %></small>
+        <small><%= link_to comment.user.username, user_path(comment.user.id) %></small>
       </blockquote>
     </div>
     <% end %>  

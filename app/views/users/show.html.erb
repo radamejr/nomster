@@ -1,14 +1,49 @@
 <div class="booyah-box offset-4">
   <div class="row">
     <div class="col-4">
-      <%= image_tag 'user.png', class: 'img-thumbail avatar' %>
+
+        <% if @user.profile_pic.url != nil %>
+          <%= image_tag @user.profile_pic.url, class: 'img-thumbnail avatar' %>
+        <% else %>
+          <%= image_tag 'user.png', class: 'img-thumbnail avatar' %>
+        <% end %>
       <br />
       <br />
       <% if user_signed_in? %>
-        <% if current_user.id == @user.id %>   
-          <%= link_to 'edit account', edit_user_registration_path, class: 'nav-link', :id => 'username' %>  
-        <% end %>        
+        <% if current_user.id == @user.id %>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#avatarModal">
+            Edit Picture
+          </button>
+        <% end %>
       <% end %>
+
+      <!-- The Modal -->
+      <div class="modal" id="avatarModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Update Avatar Image</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <%= simple_form_for @user do |f| %>
+            <div class="modal-body">
+              <%= f.file_field :profile_pic %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <%= f.submit "Update Picture", class: 'btn btn-primary' %>
+            </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
     </div>
 
     <div class="col-7">
@@ -16,6 +51,11 @@
       <h3>Member Since: <%= @user.created_at.strftime("%B %d, %Y") %></h3>
       <h4><%= @user.comments.count %> total comments </h4>
       <h4><%= @user.comments.where(rating: '5_stars').count %> total 5 Star reviews </h4>
+      <% if user_signed_in? %>
+        <% if current_user.id == @user.id %>   
+          <%= link_to 'edit account', edit_user_registration_path, class: 'nav-link float-right', :id => 'username' %>  
+        <% end %>        
+      <% end %>
     </div>
   </div>
   <div class="clear"></div>
