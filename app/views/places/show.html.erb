@@ -1,19 +1,37 @@
 <div class="booyah-box col-10 offset-1">
 
-  <div class="row col-10 offset-1">
+  <div class="row col-11 offset-1">
     <div class="col-sm-7">
       <h1><%= @place.name %></h1>
       <i><%= @place.address %> </i>
       <br/><br/>
       <p><%= @place.description %></p> 
     </div>
-
-    <% if @place.pictures.present? %>
-    <div class="col-sm-4 img-place">
-     <%= image_tag @place.pictures[0].url %>
-    </div>
-    <% end %>
-    
+      <% if @place.pictures.present? %>
+      <div class="float-right col-sm-5">
+        <div id="carouselExampleIndicators" class="carousel slide" data-interval= "false" data-ride="place-carousel">
+          <div class="carousel-inner">
+            <% @place.pictures.each_with_index do |photo, index| %>
+              <% if index == 0 %>
+                <div class="carousel-item active">
+              <% elsif index > 0 %>
+                <div class="carousel-item">
+              <% end %>
+                <img class="d-block w-100" src=<%=  photo.url %> >
+              </div>
+            <% end %>        
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <% end %>
   </div>  
   <br />
   <br />
