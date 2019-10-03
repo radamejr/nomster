@@ -8,9 +8,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user != current_user
-      return render plain: 'Not Allowed', status: :forbidden
-    end
+    
+    return render plain: 'Not Allowed', status: :forbidden if @user != current_user
+    
 
     @user.update_attributes(users_params)
     
