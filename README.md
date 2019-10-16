@@ -4,7 +4,7 @@ Nomster's goal is to create a Yelp style Web-Application. This app is completely
 
 ## Getting Started
 
-You can visit this application in the wild by clicking [here]. (https://nomster-robert-adame.herokuapp.com/)
+You can visit this application in the wild by clicking [here.](https://nomster-robert-adame.herokuapp.com/)
 In order to add, comment or rate locations you will have to sign up for an account. Don't worry its simple and easy just click the signup button in the main navigation menu!
 
 ## Notable Languages, Systems and Gems Used
